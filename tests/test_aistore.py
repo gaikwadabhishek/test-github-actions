@@ -13,7 +13,6 @@ from aistore.client.api import Client
 # from requests import get
 import time
 
-# time.sleep(10000)
 # ip = get('https://api.ipify.org').content.decode('utf8')
 
 
@@ -22,6 +21,7 @@ class TestObjectOps(unittest.TestCase):  # pylint: disable=unused-variable
     def setUp(self) -> None:
         letters = string.ascii_lowercase
         self.bck_name = ''.join(random.choice(letters) for _ in range(10))
+        time.sleep(10000)
 
         self.client = Client(CLUSTER_ENDPOINT)
         self.buckets = []
