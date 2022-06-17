@@ -10,7 +10,12 @@ import unittest
 
 from aistore.client.api import Client
 
-CLUSTER_ENDPOINT = "http://localhost:51080"
+from requests import get
+
+ip = get('https://api.ipify.org').content.decode('utf8')
+
+
+CLUSTER_ENDPOINT = f"http://{ip}:51080"
 class TestObjectOps(unittest.TestCase):  # pylint: disable=unused-variable
     def setUp(self) -> None:
         letters = string.ascii_lowercase
