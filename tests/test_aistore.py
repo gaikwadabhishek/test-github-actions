@@ -21,7 +21,7 @@ class TestObjectOps(unittest.TestCase):  # pylint: disable=unused-variable
     def setUp(self) -> None:
         letters = string.ascii_lowercase
         self.bck_name = ''.join(random.choice(letters) for _ in range(10))
-        time.sleep(10000)
+        time.sleep(500)
 
         self.client = Client(CLUSTER_ENDPOINT)
         self.buckets = []
