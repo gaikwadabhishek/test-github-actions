@@ -34,4 +34,4 @@ jobs:
         run: pip3 install -r requirements.txt
       - name: Run tests with pytest
         run:
-          pytest test/
+          pytest test
