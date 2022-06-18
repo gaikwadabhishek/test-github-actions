@@ -16,7 +16,7 @@ import time
 # ip = get('https://api.ipify.org').content.decode('utf8')
 
 
-CLUSTER_ENDPOINT = "http://localhost:51080"
+CLUSTER_ENDPOINT = "http://localhost:8080"
 class TestObjectOps(unittest.TestCase):  # pylint: disable=unused-variable
     def setUp(self) -> None:
         letters = string.ascii_lowercase
