@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   call-workflow:
-    uses: gaikwadabhishek/aistore/.github/workflows/deploy.yml
+    uses: gaikwadabhishek/aistore/.github/workflows/deploy.yml@master
   # This workflow contains a single job called "build"
   build:
     # Steps represent a sequence of tasks that will be executed as part of the job
