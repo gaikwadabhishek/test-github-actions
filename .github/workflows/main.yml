@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           ais bucket ls
-          ais create bucket ais://bucket1
+          ais bucket create ais://bucket1
       - name: Run tests with pytest
         run:
           pytest tests
