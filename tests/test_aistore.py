@@ -37,7 +37,7 @@ class TestObjectOps(unittest.TestCase):  # pylint: disable=unused-variable
     def test_bucket(self):
         res = self.client.list_buckets()
         count = len(res)
-        self.create_bucket(self.bck_name)
+        self.client.create_bucket(self.bck_name)
         res = self.client.list_buckets()
         count_new = len(res)
         self.assertEqual(count + 1, count_new)
