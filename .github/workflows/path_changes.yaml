@@ -5,7 +5,8 @@ on:
     paths:
       - 'pathA/**'
       - 'pathB/**'
-
+env:
+  PATHA: false
 jobs:
   set-env-vars:
     runs-on: ubuntu-latest
