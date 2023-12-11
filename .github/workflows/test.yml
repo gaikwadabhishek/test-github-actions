@@ -1,0 +1,26 @@
+name: Transformer Docker Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        description: 'Enter Value for Input 1?'
+        required: true
+        type: boolean
+        default: true
+        
+env:
+  INPUT1: ${{ github.event.inputs.input1 }}
+
+jobs:
+  echo-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo
+      if: $INPUT1 == 'true'
+      run: |
+        echo "INPUT WAS SELECTED"
+    - name: Echo false
+      if: $INPUT1 == 'true'
+      run: |
+        echo "INPUT WAS NOT SELECTED"
