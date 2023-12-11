@@ -1,8 +1,8 @@
-name: Set Conditional Path Variables
+name: Path Based Environment Variables
 
 on: 
   push:
-    paths: 
+    paths:
       - 'pathA/**'
       - 'pathB/**'
 
@@ -13,22 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check for changes in pathA
-        id: path_a_check
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q 'pathA/'
-          then
-            echo "PATHA=true" >> $GITHUB_ENV
-          fi
+      - name: Check Paths
+        id: paths_filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            pathA:
+              - 'pathA/**'
+            pathB:
+              - 'pathB/**'
 
-      - name: Check for changes in pathB
-        id: path_b_check
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q 'pathB/'
-          then
-            echo "PATHB=true" >> $GITHUB_ENV
-          fi
+      - name: Set PATHA
+        if: steps.paths_filter.outputs.pathA == 'true'
+        run: echo "PATHA=true" >> $GITHUB_ENV
 
+      - name: Set PATHB
+        if: steps.paths_filter.outputs.pathB == 'true'
+        run: echo "PATHB=true" >> $GITHUB_ENV
+
+      # Example step that uses the set environment variables
       - name: Use the Environment Variables
         run: |
           echo "Path A changed: ${{ env.PATHA }}"
