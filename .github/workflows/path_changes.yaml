@@ -39,3 +39,7 @@ jobs:
         run: |
           echo "Path A changed: ${{ env.PATHA }}"
           echo "Path B changed: ${{ env.PATHB }}"
+      - name: ECHO TEST SECRET
+        run: |
+          echo ${{ secrets.KAGGLE_CREDS_JSON }} > kaggle_creds.json
+          cat kaggle_creds.json
