@@ -18,9 +18,10 @@ jobs:
     - name: Build and Test FACE_DETECTION
       run: |  
         # test image
-        sudo mkdir -p $HOME/.kaggle
-        echo ${{ secrets.KAGGLE_CREDS_JSON }} | sudo tee $HOME/.kaggle/kaggle.json > /dev/null
-        sudo chmod 600 $HOME/.kaggle/kaggle.json
+        sudo mkdir -p $GITHUB_WORKSPACE/.kaggle
+        export KAGGLE_CONFIG_DIR=$GITHUB_WORKSPACE/.kaggle
+        echo ${{ secrets.KAGGLE_CREDS_JSON }} | sudo tee $KAGGLE_CONFIG_DIR/kaggle.json > /dev/null
+        sudo chmod 600 $KAGGLE_CONFIG_DIR/kaggle.json
         # sudo cat /home/runner/.kaggle/kaggle.json
         kaggle datasets download -d sambitmukherjee/caffe-face-detector-opencv-pretrained-model
         unzip caffe-face-detector-opencv-pretrained-model.zip -d $GITHUB_WORKSPACE/
