@@ -1,4 +1,4 @@
-name: Transformer Docker Images
+name: Kaggle Test
 
 on:
   workflow_dispatch:
