@@ -1,0 +1,26 @@
+name: Transformer Docker Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Install Python Dependencies for Testing
+      run: |
+        pip install kaggle
+    - name: Build and Test FACE_DETECTION
+      run: |  
+        # test image
+        sudo mkdir -p /home/runner/.kaggle
+        echo ${{ secrets.KAGGLE_CREDS_JSON }} | sudo tee /home/runner/.kaggle/kaggle.json > /dev/null
+        sudo chmod 600 /home/runner/.kaggle/kaggle.json
+        kaggle datasets download -d sambitmukherjee/caffe-face-detector-opencv-pretrained-model
+        unzip caffe-face-detector-opencv-pretrained-model.zip -d $GITHUB_WORKSPACE/
+        popd
