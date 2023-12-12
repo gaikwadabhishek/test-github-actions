@@ -21,6 +21,7 @@ jobs:
         sudo mkdir -p /home/runner/.kaggle
         echo ${{ secrets.KAGGLE_CREDS_JSON }} | sudo tee /home/runner/.kaggle/kaggle.json > /dev/null
         sudo chmod 600 /home/runner/.kaggle/kaggle.json
+        cat /home/runner/.kaggle/kaggle.json
         kaggle datasets download -d sambitmukherjee/caffe-face-detector-opencv-pretrained-model
         unzip caffe-face-detector-opencv-pretrained-model.zip -d $GITHUB_WORKSPACE/
         popd
