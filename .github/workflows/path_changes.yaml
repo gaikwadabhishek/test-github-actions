@@ -2,6 +2,13 @@ name: Path Based Environment Variables
 
 on:
   workflow_dispatch:
+        inputs:
+          check_version:
+            description: 'I confirm that I have verified [version](https://github.com/NVIDIA/aistore/blob/main/python/aistore/version.py) to be published'
+            required: true
+            type: boolean
+            default: false  
+
   push:
     paths:
       - 'pathA/**'
